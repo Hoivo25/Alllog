@@ -4,6 +4,9 @@ import logging
 import asyncio
 from app import app
 from config import Config
+from working_bot import TelegramBot
+
+bot = TelegramBot()
 
 logger = logging.getLogger(__name__)
 
@@ -13,10 +16,10 @@ def run_telegram_bot():
         # Create new event loop for the thread
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
-        
+
         from working_bot import TelegramBot
         bot = TelegramBot()
-        
+
         print(f"Starting Telegram bot @TRIPLELOGSHOP_BOT...")
         loop.run_until_complete(bot.run_bot())
     except Exception as e:
@@ -32,7 +35,7 @@ if __name__ == "__main__":
         print(f"Bot token found, starting bot...")
         bot_thread = threading.Thread(target=run_telegram_bot, daemon=True)
         bot_thread.start()
-    
+
     # Start the Flask web server
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port, debug=False, threaded=True)

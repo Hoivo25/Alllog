@@ -15,7 +15,7 @@ logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
     level=logging.INFO,
 )
-logger = logging.getLogger(name)
+logger = logging.getLogger(__name__)
 
 # Get bot token from environment
 BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
